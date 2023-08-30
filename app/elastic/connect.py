@@ -1,6 +1,8 @@
 import os
 from elasticsearch import Elasticsearch
 
+from app import BASE_PATH
+
 
 def connect_elasticsearch() -> Elasticsearch:
     es = Elasticsearch(os.getenv("URL_ELASTIC"))

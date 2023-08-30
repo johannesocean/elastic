@@ -13,7 +13,8 @@ def searcher(query_model: Search = None, query_json: dict = None) -> dict:
 
 
 if __name__ == '__main__':
-    # querty_data = {'match': {'city': 'Göteborg'}}
+    query_data = {"match_all": {}}
+    # query_data = {'match': {'city': 'Göteborg'}}
     # query_data = {
     #     'bool': {
     #         'must': [
@@ -22,22 +23,23 @@ if __name__ == '__main__':
     #         ]
     #     }
     # }
-    query_data = {
-        'bool': {
-            'filter': {
-                'geo_distance': {
-                    'distance': '300km',
-                    'pin.location': {
-                        'lat': 58.5,
-                        'lon': 15.1
-                    }
-                }
-            }
-        }
-    }
+    # query_data = {
+    #     'bool': {
+    #         'filter': {
+    #             'geo_distance': {
+    #                 'distance': '300km',
+    #                 'pin.location': {
+    #                     'lat': 58.5,
+    #                     'lon': 15.1
+    #                 }
+    #             }
+    #         }
+    #     }
+    # }
     search_model = Search(
         index="michelin_restaurants",
         query=query_data
     )
+    print(search_model.dict(exclude_none=True))
     res = searcher(search_model)
     print(res)

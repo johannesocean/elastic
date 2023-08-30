@@ -54,9 +54,11 @@ class Query(BaseModel):
     """Model for match query."""
     bool: Bool = None
     match: MatchMichelinOptions = None
+    match_all: dict = None
 
 
 class Search(BaseModel):
     """Model for search query."""
     index: str
     query: Query
+    size: int = 1000
